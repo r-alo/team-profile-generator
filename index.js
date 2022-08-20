@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
 const generateHtml = require('./utils/generateHtml');
 
 inquirer
@@ -39,7 +40,12 @@ inquirer
     }
 
     const content = generateHtml(answersCollection);
-    console.log(content);
+    fs.writeFile('./indextest.html', content, err => {
+        if (err) {
+            console.error(err);
+        }
+        // file written successfully
+    });
   })
   .catch((error) => {
     console.log(error)
