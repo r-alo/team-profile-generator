@@ -17,3 +17,9 @@ SO THAT I have quick access to their emails and GitHub profiles
 ```bash
 node index.js
 ```
+
+### Results:
+
+* [GitHub Page](https://github.com/r-alo/team-profile-generator)
+
+* ![Functionality of work day scheduler](./assets/gif/teamprofile.gif)
