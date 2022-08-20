@@ -1,3 +1,11 @@
+function emailLinkHtml(email) {
+    return `<a href="mailto:${email}">${email}</a>`;
+}
+
+function githubLinkHtml(username) {
+    return `<a target="_blank" href="https://github.com/${username}">${username}</a>`;
+}
+
 function card(memberData, number) {
     return `
         <div class="card" style="width: 18rem;">
@@ -7,14 +15,16 @@ function card(memberData, number) {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" id="id_${number}">ID: ${number}</li>
-                <li class="list-group-item" id="email_${number}">Email: ${memberData[`emailFrom_${number}`]}</li>
-                <li class="list-group-item" id="github_${number}">GitHub: ${memberData[`githubFrom_${number}`]}</li>
+                <li class="list-group-item" id="email_${number}">Email: ${emailLinkHtml(memberData[`emailFrom_${number}`])}</li>
+                <li class="list-group-item" id="github_${number}">GitHub: ${githubLinkHtml(memberData[`githubFrom_${number}`])}</li>
             </ul>
         </div>
     `
 }
 
 function generateHtml(data) {
+    console.log(data);
+    return "";
     const htmlCards = data.map((memberData, index) => {
         const number = index + 1;
         return card(memberData, number);
