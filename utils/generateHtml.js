@@ -7,24 +7,29 @@ function githubLinkHtml(username) {
 }
 
 function card(memberData, number) {
+    let lastCardElement = "";
+
+    if (memberData.github) {
+        lastCardElement  = `<li class="list-group-item" id="github_${number}">GitHub: ${githubLinkHtml(memberData.github)}</li>`;
+    } else if (memberData.school ) {
+        lastCardElement  = `<li class="list-group-item" id="school_${number}">School: ${memberData.school}</li>`;
+    }
     return `
         <div class="card" style="width: 18rem;">
             <div class="card-body" style="background-color: rgb(0, 145, 255);">
-                <h5 class="card-title" id="name_${number}">${memberData[`nameFrom_${number}`]}</h5>
-                <p class="card-text" id="role_${number}">${memberData[`roleFrom_${number}`]}</p>
+                <h5 class="card-title" id="name_${number}">${memberData.name}</h5>
+                <p class="card-text" id="role_${number}">${memberData.role}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" id="id_${number}">ID: ${number}</li>
-                <li class="list-group-item" id="email_${number}">Email: ${emailLinkHtml(memberData[`emailFrom_${number}`])}</li>
-                <li class="list-group-item" id="github_${number}">GitHub: ${githubLinkHtml(memberData[`githubFrom_${number}`])}</li>
+                <li class="list-group-item" id="id_${number}">ID: ${memberData.id}</li>
+                <li class="list-group-item" id="email_${number}">Email: ${emailLinkHtml(memberData.email)}</li>
+                ${lastCardElement}
             </ul>
         </div>
     `
 }
 
 function generateHtml(data) {
-    console.log(data);
-    return "";
     const htmlCards = data.map((memberData, index) => {
         const number = index + 1;
         return card(memberData, number);

@@ -19,7 +19,7 @@ async function addTeamMember(role) {
     const memberData = await inquirer.prompt([
         {
             type: 'input',
-            name: `nameFrom`, 
+            name: `name`, 
             message: `Input the name(required)`
         },
         {
@@ -29,7 +29,7 @@ async function addTeamMember(role) {
         },
         {
             type: 'input',
-            name: `emailFrom`, 
+            name: `email`, 
             message: `Input the email(required):`
         },
         lastQuestion
