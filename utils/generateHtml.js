@@ -7,7 +7,7 @@ function githubLinkHtml(username) {
 }
 
 function card(memberData, number) {
-    let lastCardElement = "";
+    let lastCardElement = `<li class="list-group-item" id="office_${number}">Office: ${memberData.officeNumber}</li>`;
 
     if (memberData.github) {
         lastCardElement  = `<li class="list-group-item" id="github_${number}">GitHub: ${githubLinkHtml(memberData.github)}</li>`;
@@ -30,9 +30,10 @@ function card(memberData, number) {
 }
 
 function generateHtml(data) {
-    const htmlCards = data.map((memberData, index) => {
+    let htmlCards = "";
+    data.forEach((memberData, index) => {
         const number = index + 1;
-        return card(memberData, number);
+        htmlCards += card(memberData, number);
     });
 
     return `

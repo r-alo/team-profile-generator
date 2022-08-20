@@ -75,17 +75,17 @@ inquirer
   .prompt([
     {
         type: 'input',
-        name: 'managerName', 
+        name: 'name', 
         message: 'Enter the team manager’s name (required):'
     },
     {
         type: 'input',
-        name: 'managerId', 
+        name: 'id', 
         message: 'Enter the team manager’s ID (required):'
     },
     {
         type: 'input',
-        name: 'managerEmail', 
+        name: 'email', 
         message: 'Enter the team manager’s email (required):'
     },
     {
@@ -95,42 +95,9 @@ inquirer
     },
   ])
   .then(async (answers) => {
-    console.log(answers);
+    answers.role = 'manager';
+    memberList.push(answers)
     return menu();
-    
-    const answersCollection = [];
-    for (let index = 0; index < answers.teamNumbers; index++) {
-        const number = index + 1;
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: `nameFrom_${number}`, 
-                message: `Input the name from ${number} member(required)`
-            },
-            {
-                type: 'input',
-                name: `roleFrom_${number}`, 
-                message: `Input the role from ${number} member(required):`
-            },
-            {
-                type: 'input',
-                name: `emailFrom_${number}`, 
-                message: `Input the email from ${number} member(required):`
-            },
-            {
-                type: 'input',
-                name: `githubFrom_${number}`, 
-                message: `Input the github from ${number} member(required):`
-            },
-        ]);
-    }
-
-    const content = generateHtml(answersCollection);
-    fs.writeFile('./index.html', content, err => {
-        if (err) {
-            console.error(err);
-        }
-    });
   })
   .catch((error) => {
     console.log(error)
